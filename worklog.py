@@ -2,6 +2,7 @@ import sys
 import os
 from time import sleep
 from modules import CreateModule, EditModule, SearchModule
+from utils import clear, finalize
 
 MAIN_MENU = '''Worklog
 ==================
@@ -42,7 +43,10 @@ def menu():
         menu()
     elif option.upper() == 'S':
         ### Search
-        print('Search')
+        sm = SearchModule()
+        sm.setup()
+        sleep(1)
+        menu()
     elif option.upper() == 'Q':
         ### Quit
         finalize()
@@ -50,16 +54,6 @@ def menu():
         ### Undefined option
         print('Undefined option. Restarting!')
         menu()
-
-def clear():
-    """Clear the terminal"""
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-
-def finalize():
-    """Provides a message to the user and cleanly exits the program"""
-    print('\nShutting down. We hope to see you again!')
-    sys.exit(0)
 
 if __name__ == '__main__':
     ### Clean exits
