@@ -38,6 +38,7 @@ Notes:
         ### Otherwise, return
         if self.entries == []:
             print('No entries were found.')
+            sleep(1)
             return
         ### Get user input
         action = input(self.VIEW_FORMAT.format(**self.entries[self.index])).upper()
