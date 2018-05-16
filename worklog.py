@@ -29,6 +29,8 @@ def menu():
         option = OPTIONS[int(option)]
     except ValueError:
         pass
+    except IndexError:
+        option = 'UNDEFINED'
 
     if option.upper() == 'C':
         ### Create
@@ -40,9 +42,8 @@ def menu():
         ### Search
         sm = SearchModule()
         entries = sm.setup()
-        print(entries)
-        vm = ViewModule()
-        vm.load_entries(entries)
+        vm = ViewModule(entries)
+        vm.load_entries()
         sleep(1)
         menu()
     elif option.upper() == 'Q':

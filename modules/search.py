@@ -36,6 +36,8 @@ Or press \033[4mQ\033[0m to go back to the main menu]\n\n'''
             option = self.SEARCH_OPTIONS[int(option)]
         except ValueError:
             pass
+        except KeyError:
+            option = 'UNDEFINED'
         
         option = option.upper()
         if option == 'Q':
@@ -78,12 +80,10 @@ Or press \033[4mQ\033[0m to go back to the main menu]\n\n'''
             return self.get_date_kwargs()
         return {'date': date}
     
-    def entries_by_date(self, reader, date):
-        entries = []
-        for row in reader:
-            if row['date'] == date:
-                entries.append(row)
-        return entries
+    def entries_by_date(self, row, date):
+        if row['date'] == date:
+            return True
+        return False
 
     def get_time_spent_kwargs(self):
         time_spent = input('Please give a time spent in minutes\t')
@@ -149,6 +149,7 @@ Or press \033[4mQ\033[0m to go back to the main menu]\n\n'''
             entries = []
             reader = DictReader(f, fieldnames=self.field_names)
             for row in reader:
+                row.update({'line': reader.line_num})
                 if func(row, **kwargs):
                     entries.append(row)
             return entries
