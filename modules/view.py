@@ -30,6 +30,7 @@ Notes:
 {notes}\n\n'''
 
     def load_entries(self):
+        clear()
         if self.entries == []:
             print('No entries were found.')
             return
@@ -37,7 +38,7 @@ Notes:
         action = input(self.VIEW_FORMAT.format(**self.entries[self.index])).upper()
 
         if action == 'N':
-            if self.index == len(self.entries):
+            if self.index >= len(self.entries) - 1:
                 print('Already viewing last entry')
                 sleep(1)
             else:
@@ -45,8 +46,8 @@ Notes:
             self.load_entries()
         elif action == 'P':
             if self.index == 0:
-                sleep(1)
                 print('Already viewing first entry')
+                sleep(1)
             else:
                 self.index -= 1
             self.load_entries()

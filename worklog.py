@@ -44,6 +44,7 @@ def menu():
         entries = sm.setup()
         vm = ViewModule(entries)
         vm.load_entries()
+        print('Returning to main menu')
         sleep(1)
         menu()
     elif option.upper() == 'Q':
@@ -52,6 +53,7 @@ def menu():
     else:
         ### Undefined option
         print('Undefined option. Restarting!')
+        sleep(1)
         menu()
 
 if __name__ == '__main__':
