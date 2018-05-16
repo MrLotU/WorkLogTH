@@ -32,21 +32,17 @@ def menu():
 
     if option.upper() == 'C':
         ### Create
-        clear()
         cm = CreateModule()
-        name = input('Give a name for the entry:\t')
-        time = input('How many minutes did you spend on this entry:\t')
-        notes = input('Please give any other notes:\n')
-        cm.create_entry(name=name, time=time, notes=notes)
-        print('Created entry!')
+        cm.setup()
         sleep(1)
         menu()
     elif option.upper() == 'S':
         ### Search
         sm = SearchModule()
-        sm.setup()
-        sleep(1)
-        menu()
+        entries = sm.setup()
+        print(entries)
+        # sleep(1)
+        # menu()
     elif option.upper() == 'Q':
         ### Quit
         finalize()
