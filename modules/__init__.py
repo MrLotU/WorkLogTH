@@ -2,6 +2,6 @@
 ### Like: from modules import CreateModule, EditModule, SearchModule
 ### Instead having to import each one on a seperate line
 from modules.create import CreateModule
-from modules.edit import EditModule
+from modules.view import ViewModule
 from modules.module import Module
 from modules.search import SearchModule

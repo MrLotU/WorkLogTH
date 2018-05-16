@@ -19,7 +19,7 @@ Please choose a search option from the list below:
     3. \033[4mE\033[0mxact search
     4. \033[4mR\033[0megex
     5. \033[4mD\033[0mate range
-Or press \033[4mQ\033[0m to go back to the main menu]\n'''
+Or press \033[4mQ\033[0m to go back to the main menu]\n\n'''
 
     SEARCH_OPTIONS = {
         1: 'C',
@@ -118,7 +118,7 @@ Or press \033[4mQ\033[0m to go back to the main menu]\n'''
         field = input('Please give field name to filter on. Can be {}\t'.format(' or '.join(searchable_fields)))
         if not field in searchable_fields:
             print('Invalid field')
-            return self.get_exact_kwargs()
+            return self.get_regex_kwargs()
         regex = input('Please give me a string to use as regular expression\t')
         return {'field': field, 'regex': regex}
 

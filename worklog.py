@@ -1,7 +1,7 @@
 import sys
 import os
 from time import sleep
-from modules import CreateModule, EditModule, SearchModule
+from modules import CreateModule, ViewModule, SearchModule
 from utils import clear, finalize
 
 MAIN_MENU = '''Worklog
@@ -41,8 +41,10 @@ def menu():
         sm = SearchModule()
         entries = sm.setup()
         print(entries)
-        # sleep(1)
-        # menu()
+        vm = ViewModule()
+        vm.load_entries(entries)
+        sleep(1)
+        menu()
     elif option.upper() == 'Q':
         ### Quit
         finalize()
