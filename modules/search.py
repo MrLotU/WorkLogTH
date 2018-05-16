@@ -1,0 +1,2 @@
+class SearchModule():
+    pass

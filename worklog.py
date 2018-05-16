@@ -1,6 +1,7 @@
 import sys
 import os
-
+from time import sleep
+from modules import CreateModule, EditModule, SearchModule
 
 MAIN_MENU = '''Worklog
 ==================
@@ -20,8 +21,7 @@ OPTIONS = {
 
 def menu():
     """Displays the menu and redirects to underlaying options"""
-    ### Clear the terminal
-    os.system('cls' if os.name == 'nt' else 'clear')
+    clear()
     ### Get desired option
     option = input(MAIN_MENU)
     try:
@@ -29,13 +29,21 @@ def menu():
     except ValueError:
         pass
 
-    if option == 'C':
+    if option.upper() == 'C':
         ### Create
-        print('Create')
-    elif option == 'S':
+        clear()
+        cm = CreateModule()
+        name = input('Give a name for the entry:\t')
+        time = input('How many minutes did you spend on this entry:\t')
+        notes = input('Please give any other notes:\n')
+        cm.create_entry(name=name, time=time, notes=notes)
+        print('Created entry!')
+        sleep(1)
+        menu()
+    elif option.upper() == 'S':
         ### Search
         print('Search')
-    elif option == 'Q':
+    elif option.upper() == 'Q':
         ### Quit
         finalize()
     else:
@@ -43,17 +51,17 @@ def menu():
         print('Undefined option. Restarting!')
         menu()
 
+def clear():
+    """Clear the terminal"""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def finalize():
     """Provides a message to the user and cleanly exits the program"""
-    print('Shutting down. We hope to see you again!')
+    print('\nShutting down. We hope to see you again!')
     sys.exit(0)
 
 if __name__ == '__main__':
-    ### Python 2 compatibility
-    try:
-        input = raw_input
-    except NameError:
-        pass
     ### Clean exits
     try:
         menu()
