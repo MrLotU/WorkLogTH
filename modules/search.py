@@ -133,7 +133,7 @@ Or press \033[4mQ\033[0m to go back to the main menu]\n\n'''
     
     def entries_by_exact_search(self, row, field, value):
         """Check if the row confirms to the exact search data"""
-        if row[field] == value:
+        if value in row[field]:
             return True
         return False
     
@@ -152,7 +152,7 @@ Or press \033[4mQ\033[0m to go back to the main menu]\n\n'''
 
     def entries_by_regex(self, row, field, regex):
         """Check if the row confirms to the regex data"""
-        if re.search(r'{}'.format(regex), row[field]):
+        if re.search(r'{}'.format(regex), row[field], 'i'):
             return True
         return False
 
@@ -174,7 +174,7 @@ Or press \033[4mQ\033[0m to go back to the main menu]\n\n'''
     def entries_by_date_range(self, row, start, end):
         """Check if the row confirms to the date range data"""
         date = datetime.strptime(row['date'], '%m/%d/%Y').date()
-        if start < date < end:
+        if start <= date <= end:
             return True
         return False
 

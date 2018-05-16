@@ -29,7 +29,7 @@ def menu():
         option = OPTIONS[int(option)]
     except ValueError:
         pass
-    except IndexError:
+    except KeyError:
         option = 'UNDEFINED'
 
     if option.upper() == 'C':
