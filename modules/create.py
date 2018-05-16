@@ -9,15 +9,20 @@ class CreateModule(Module):
     """Module for creating new entries"""
 
     def setup(self):
+        """Setup the CreateModel for use"""
+        ### Clear screen
         clear()
+        ### Get data
         name = input('Give a name for the entry:\t')
         time = input('How many minutes did you spend on this entry:\t')
         notes = input('Please give any other notes:\n')
+        ### Check if time is an int
         try:
             int(time)
         except ValueError:
             print('Invalid time spent. Should be a number')
             self.setup()
+        ### Create entry
         self.create_entry(name=name, time=time, notes=notes)
         print('Created entry!')
 
