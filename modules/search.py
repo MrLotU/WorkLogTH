@@ -152,7 +152,7 @@ Or press \033[4mQ\033[0m to go back to the main menu]\n\n'''
 
     def entries_by_regex(self, row, field, regex):
         """Check if the row confirms to the regex data"""
-        if re.search(r'{}'.format(regex), row[field], 'i'):
+        if re.search(r'{}'.format(regex), row[field], re.IGNORECASE):
             return True
         return False
 
